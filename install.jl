@@ -1,6 +1,7 @@
 # Just to keep track
 
 using Pkg
+ENV["JULIA_CUDA_USE_BINARYBUILDER"] = "false"
 
 # Required
 Pkg.add("IJulia")
