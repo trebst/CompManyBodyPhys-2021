@@ -10,7 +10,7 @@ import pyalps.plot
 import numpy as np
 
 Ls = [8]
-hs = np.linspace(0.0, 2, 21)
+hs = np.linspace(0.0, 1.5, 31)
 parms = []
 for h in hs:
     for L in Ls:
@@ -33,11 +33,11 @@ input_file = pyalps.writeInputFiles('1D-SSE-TRANSVERSE-ISING', parms)
 res = pyalps.runApplication('loop', input_file, Tmin=1)
 
 
-# data = pyalps.loadMeasurements(pyalps.getResultFiles(prefix='1D-SSE-TRANSVERSE-ISING'),'|Magnetization|')
 data = pyalps.loadMeasurements(pyalps.getResultFiles(prefix='1D-SSE-TRANSVERSE-ISING'),'|Magnetization|')
 magnetization = pyalps.collectXY(data,x='Gamma',y='|Magnetization|',foreach=['L'])
 
 magnetization[0].y /= (L/2)
+magnetization[0].x *= 2
 
 plt.figure()
 pyalps.plot.plot(magnetization)
